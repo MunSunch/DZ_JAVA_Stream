@@ -18,14 +18,21 @@ public class Test {
             );
         }
 
+        //Найти количество несовершеннолетних (т.е. людей младше 18 лет).
         long countChildren = persons.stream()
                 .filter(x -> x.getAge() <= 18)
                 .count();
+
+        //Получить список фамилий призывников (т.е. мужчин от 18 и до 27 лет).
         List<String> surnameRecruits = persons.stream()
                 .filter(x -> x.getAge() > 18 && x.getAge() <= 27)
                 .filter(x -> x.getSex() == Sex.MAN)
                 .map(Person::getName)
                 .collect(Collectors.toList());
+
+        //Получить отсортированный по фамилии список потенциально работоспособных людей
+        // с высшим образованием в выборке
+        //(т.е. людей с высшим образованием от 18 до 60 лет для женщин и до 65 лет для мужчин).
         List<String> surnameWorkersWithHighEducation = persons.stream()
                 .filter(x -> x.getEducation() == Education.HIGHER)
                 .filter(x -> x.getAge()>18 &&
